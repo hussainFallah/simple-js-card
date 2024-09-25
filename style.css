@@ -1,0 +1,240 @@
+:root{
+    --main-section-padding:2em;
+    --share-div-color:#222;
+    --share-pannel-position:-2.8333em;
+    --sharing-panel-animation-distence:-.2em;
+}
+*{
+    /* padding: 0;
+    margin: 0; */
+    box-sizing: content-box;
+}
+body{
+    font-size: clamp(0.7em,calc(0.65em + .55vw),1em);
+}
+.avatar-container{
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+article{
+    width: min-content;
+    height: 16em;
+}
+article>div:first-of-type{
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 1px 1px 5px #aaa;
+    width: 100%;
+    height: 100%;
+}
+article>div>section:first-of-type{
+    flex-basis: 10em;
+}
+
+article>div>section.main-content{
+    padding: var(--main-section-padding);
+    width: 30em;
+    
+}
+article>div>section.main-content>div.flex{
+    justify-content: flex-start; 
+    align-items: center;    
+}
+article>div>section.main-content>div.flex>button{
+    position: absolute;
+    right: var(--main-section-padding);
+    overflow: hidden;
+    padding: 0;
+}
+button>img{
+    height: initial;
+}
+
+
+
+article>div>section.main-content>div.flex>div:nth-child(2){
+    margin-left: 1.5em;
+}
+
+article>div>section{
+    height: 100%;
+    font-size: .78em;
+}
+
+button{
+    position: relative;
+    border: 0;
+    outline: none;
+    width:2.3em;
+    height:2.3em;
+    border-radius: 50%;
+}
+button:hover::after{
+    content: "";
+    position: absolute;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    background-color: rgba(0,0,0,.08);
+}
+
+button:active::after{
+    background-color: rgba(0,0,0,.15);
+}
+
+img{
+    height: 100%;
+}
+
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.share-container{
+    display: none;
+    position: absolute;
+    padding: 0.3em 1em;
+    border-radius: 10px;
+    background: rgb(73,85,107);
+    background: linear-gradient(45deg, rgba(73,85,107,1) 0%, rgba(72,84,107,1) 100%);
+    color: #9baabf;
+    letter-spacing: .1em;
+    font-variant: small-caps;
+    font-size: 2em;
+    align-items: center;
+    gap: .5em;
+    /* right: -4%; */
+    right: var(--share-pannel-position);
+    bottom: 3em;
+    
+}
+
+.share-container>p{
+    padding: 0;
+    margin: 0;
+}
+
+.share-container:after{
+    content: "";
+    background-color: rgb(73,85,107);
+    padding: .3em;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%,50%) rotate(45deg);
+    
+}
+@keyframes fade-in {
+    0%{
+        opacity: 0.6;
+        transform: translate(0,0em) scale(.95);
+        
+    } 
+    
+    100%{
+        transform: translate(0,var(--sharing-panel-animation-distence)) scale(1);
+        opacity: 1;
+        
+    }
+}
+
+
+@keyframes fade-out {
+    0%{
+        transform: translate(0,var(--sharing-panel-animation-distence)) scale(1);
+        opacity: 1;
+    } 
+    
+    100%{
+        opacity: 0.8;
+        transform: translate(0,0em) scale(.95);
+    }
+}
+
+.share-container.displayed{
+    display: flex;
+    animation: normal fade-in .3s;
+    transform: translate(0,var(--sharing-panel-animation-distence));
+}
+.share-container.removing{
+    animation-name: fade-out;
+}
+
+.reletive-container{
+    position: relative;
+}
+
+@media (max-width:800px) {
+    article.reletive-container>div.flex:not(.share-container){
+        flex-direction: column;
+    }
+    article.reletive-container{
+        height: min-content;
+        width: clamp(350px,60vw,550px)
+    }
+    article>div>section:first-of-type>img{
+        height: auto;
+        width: 100%;
+    }
+    article>div>section.main-content{
+        width: auto;
+        padding-bottom: 1em;
+    }
+    body{
+        font-size: clamp(0.8em,calc(0.7em + .7vw),1em);
+    }
+
+    .share-container:after{
+        display: none;
+    }
+    .share-container{
+        left: 0;
+        right: 0;
+        bottom: 0;
+        font-size: 3.8em;
+        padding: .2em;
+        justify-content: flex-start;
+        gap: .2em;
+        font-size: 2.5em;
+        padding: .35em calc(var(--main-section-padding) / 3) .65em;
+    }
+    h3,p{
+        margin: 1em;
+    }
+
+    
+    .share-container.displayed{
+        transform: translate(0px);
+    }
+    article>div>section.main-content>div.flex>button{
+        z-index: 1;
+        bottom: 2em;
+    }
+
+    @keyframes fade-in {
+        0%{
+            opacity: 0.6;
+        } 
+        
+        100%{
+            opacity: 1;
+        }
+    }
+    
+    
+    @keyframes fade-out {
+        0%{
+            opacity: 1;
+        } 
+        
+        100%{
+            opacity: 0.8;   
+        }
+    }
+}
