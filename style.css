@@ -11,6 +11,10 @@
 }
 body{
     font-size: clamp(0.7em,calc(0.65em + .55vw),1em);
+    min-height: 100vh; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
 }
 .avatar-container{
     width: 3em;
